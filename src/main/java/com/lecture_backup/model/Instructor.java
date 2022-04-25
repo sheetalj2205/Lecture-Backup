@@ -1,17 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package hib.dto;
-
-/**
- *
- * @author HP
- */
-public class teacher {
-    
-    
+package main.java.com.lecture_backup.model;
+public class Instructor {
     private String userId;
     private String name;
     private String Password;
@@ -21,10 +9,10 @@ public class teacher {
     private String Department;
     private String Subject;
 
-    public teacher() {
+    public Instructor() {
     }
 
-    public teacher(String userId,String name, String Password, String gender, String contactNo, String Address, String Department, String Subject) {
+    public Instructor(String userId,String name, String Password, String gender, String contactNo, String Address, String Department, String Subject) {
         this.name = name;
         this.userId = userId;
         this.Password = Password;

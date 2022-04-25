@@ -1,34 +1,33 @@
+package main.java.com.lecture_backup.view;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author HP
  */
-public class FlashForm extends javax.swing.JFrame  implements Runnable
-{
+public class FlashForm extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form FlashForm
      */
     public FlashForm() {
         initComponents();
-        
-new Thread(this).start();
+
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-                for(int i=0;i<=100;i++)
-        {
-            try
-            {
-            jProgressBar1.setValue(i);
-            Thread.sleep(100);
-            }catch(Exception ex){}
+        for (int i = 0; i <= 100; i++) {
+            try {
+                jProgressBar1.setValue(i);
+                Thread.sleep(100);
+            } catch (Exception ex) {
+            }
         }
         new HomePage().setVisible(true);
         dispose();
@@ -68,14 +67,6 @@ new Thread(this).start();
 
         jProgressBar1.setForeground(new java.awt.Color(175, 186, 220));
         jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 432, 1151, 20));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/le.png"))); // NOI18N
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/companyLogo.png"))); // NOI18N
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoclg_1_34.png"))); // NOI18N
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/l.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

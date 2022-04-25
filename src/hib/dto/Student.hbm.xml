@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -38,23 +39,18 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-
-<!DOCTYPE hibernate-mapping PUBLIC
-  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
 <hibernate-mapping package="hib.dto">
-    <class name="Student" table="StudentInfo">
-        <id name="ID"></id>
-        <property name="Name"></property>
-        <property name="Password"></property>
-        <property name="Gender"></property>
-        <property name="ContactNumber"></property>
-        <property name="Address"></property>
-        <property name="DOB"></property>
-        <property name="Course"></property>
-        <property name="Branch"></property>
-        <property name="Year"></property>
-        <property name="Section"></property>
-    </class>
+  <class name="main.java.com.lecture_backup.model.Student" table="StudentInfo">
+    <id name="ID"/>
+    <property name="Name"/>
+    <property name="Password"/>
+    <property name="Gender"/>
+    <property name="ContactNumber"/>
+    <property name="Address"/>
+    <property name="DOB"/>
+    <property name="Course"/>
+    <property name="Branch"/>
+    <property name="Year"/>
+    <property name="Section"/>
+  </class>
 </hibernate-mapping>

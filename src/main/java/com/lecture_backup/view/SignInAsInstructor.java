@@ -1,8 +1,9 @@
+package main.java.com.lecture_backup.view;
 
-
-import hib.dto.AcceptedRequests;
-import hib.dto.ScheduleLecture;
-import hib.dto.Student;
+import main.java.com.lecture_backup.view.HomePage;
+import main.java.com.lecture_backup.model.AcceptRequest;
+import main.java.com.lecture_backup.model.ScheduleLecture;
+import main.java.com.lecture_backup.model.Student;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -10,8 +11,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-import hib.dto.query;
-import hib.dto.teacher;
+import main.java.com.lecture_backup.model.AddRequest;
+import main.java.com.lecture_backup.model.Instructor;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -20,6 +21,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import main.java.com.lecture_backup.service.LectureBackupService;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,63 +37,51 @@ import org.jdatepicker.DateModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author HP
  */
 public class SignInAsInstructor extends javax.swing.JFrame {
-        
-        CardLayout cl;
-        DefaultTableModel dtm;
-        int number;
-        
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-        
-        query data = (query)session.get(query.class,number);
-        
-        
-        
-        
-   
+
+    CardLayout cl;
+    DefaultTableModel dtm;
+    int number;
+
+    SessionFactory sf = new Configuration().configure().buildSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = session.beginTransaction();
+    
+    //object of LectureBackupService class to call all insert, delete, update methods
+    LectureBackupService service = new LectureBackupService();
+
     public SignInAsInstructor() {
-       
+
         initComponents();
         userId.setText(HomePage.id);
         jTextField2.setText(HomePage.id);
-        
-        
-        
-        Criteria c = session.createCriteria(teacher.class);
-        c.add(Restrictions.eq("userId",HomePage.id));
-        
+
+        Criteria c = session.createCriteria(Instructor.class);
+        c.add(Restrictions.eq("userId", HomePage.id));
+
         ProjectionList pl = Projections.projectionList();
         pl.add(Projections.property("name"));
         c.setProjection(pl);
-        List <String> name1= c.list();
-        StringBuilder strbul=new StringBuilder();
-        for(String str : name1)
-        {
+        List<String> name1 = c.list();
+        StringBuilder strbul = new StringBuilder();
+        for (String str : name1) {
             strbul.append(str);
-            
+
         }
         //just for removing last comma
         //strbul.setLength(strbul.length()-1);
-        String str=strbul.toString();
+        String str = strbul.toString();
         name.setText(str);
-        
-        
-        cl=(CardLayout)(jPanel5.getLayout());
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-        
-        Criteria crit = session.createCriteria(query.class);
+
+        cl = (CardLayout) (jPanel5.getLayout());
+        Criteria crit = session.createCriteria(AddRequest.class);
         crit.add(Restrictions.eq("instructorName", str));
-        
-        List<query> data = crit.list();
+
+        List<AddRequest> data = crit.list();
         jTable1.setRowHeight(45);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         JTableHeader tableHeader = jTable1.getTableHeader();
@@ -99,16 +89,15 @@ public class SignInAsInstructor extends javax.swing.JFrame {
         tableHeader.setForeground(Color.black);
         Font headerFont = new Font("Verdana", Font.PLAIN, 19);
         tableHeader.setFont(headerFont);
-        dtm= (DefaultTableModel)jTable1.getModel();
-         
+        dtm = (DefaultTableModel) jTable1.getModel();
+
         dtm.setRowCount(0);
-        for (query sl :data){
-            Object obj[]={sl.getSerialNo(),sl.getFullName(),sl.getUserID(),sl.getSubject(),sl.getTopic(),sl.getReason(),sl.getInstructorName(),sl.getFromDate(),sl.getToDate()};
+        for (AddRequest sl : data) {
+            Object obj[] = {sl.getSerialNo(), sl.getFullName(), sl.getUserID(), sl.getSubject(), sl.getTopic(), sl.getReason(), sl.getInstructorName(), sl.getFromDate(), sl.getToDate()};
             dtm.addRow(obj);
-                    
+
         }
-        
-        
+
     }
 
     /**
@@ -824,16 +813,11 @@ public class SignInAsInstructor extends javax.swing.JFrame {
         //        new operatorWindow().setVisible(true);
         //        dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
-public void load(){
-    
-    
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-        
-        Criteria crit = session.createCriteria(query.class);
-        crit.add(Restrictions.eq("subject","maths"));
-        List<query> data = crit.list();
+    public void load() {
+
+        Criteria crit = session.createCriteria(AddRequest.class);
+        crit.add(Restrictions.eq("subject", "maths"));
+        List<AddRequest> data = crit.list();
         jTable1.setRowHeight(45);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         JTableHeader tableHeader = jTable1.getTableHeader();
@@ -841,21 +825,18 @@ public void load(){
         tableHeader.setForeground(Color.black);
         Font headerFont = new Font("Verdana", Font.PLAIN, 19);
         tableHeader.setFont(headerFont);
-        dtm= (DefaultTableModel)jTable1.getModel();
-         
+        dtm = (DefaultTableModel) jTable1.getModel();
+
         dtm.setRowCount(0);
-        for (query sl :data){
-            Object obj[]={sl.getSerialNo(),sl.getFullName(),sl.getUserID(),sl.getSubject(),sl.getTopic(),sl.getReason(),sl.getInstructorName(),sl.getFromDate(),sl.getToDate()};
-            
+        for (AddRequest sl : data) {
+            Object obj[] = {sl.getSerialNo(), sl.getFullName(), sl.getUserID(), sl.getSubject(), sl.getTopic(), sl.getReason(), sl.getInstructorName(), sl.getFromDate(), sl.getToDate()};
             dtm.addRow(obj);
-                    
         }
-    
-}
+    }
 
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        cl.show(jPanel5,"card2");
+        cl.show(jPanel5, "card2");
 
         jLabel2.setBackground(new java.awt.Color(119, 124, 168));
         jLabel2.setForeground(Color.white);
@@ -865,7 +846,7 @@ public void load(){
         jLabel8.setForeground(Color.black);
         jLabel1.setBackground(Color.white);
         jLabel1.setForeground(Color.black);
-        
+
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -879,22 +860,20 @@ public void load(){
         jLabel1.setBackground(Color.white);
         jLabel1.setForeground(Color.black);
 
-        int Result = JOptionPane.showConfirmDialog(this,"Do you want to sign out?");
-        if(Result==0){
+        int Result = JOptionPane.showConfirmDialog(this, "Do you want to sign out?");
+        if (Result == 0) {
             new HomePage().setVisible(true);
             dispose();
         }
-        if(Result==1 || Result==2){
+        if (Result == 1 || Result == 2) {
             new SignInAsInstructor().setVisible(true);
         }
 
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        
-        
-        
-        cl.show(jPanel5,"card3");
+
+        cl.show(jPanel5, "card3");
         jLabel8.setBackground(Color.white);
         jLabel8.setForeground(Color.black);
         jLabel1.setBackground(Color.white);
@@ -918,47 +897,37 @@ public void load(){
     }//GEN-LAST:event_nameActionPerformed
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
-        Criteria c = session.createCriteria(teacher.class);
-        c.add(Restrictions.eq("userId",HomePage.id));
-        
+        Criteria c = session.createCriteria(Instructor.class);
+        c.add(Restrictions.eq("userId", HomePage.id));
+
         ProjectionList pl = Projections.projectionList();
         pl.add(Projections.property("name"));
         c.setProjection(pl);
-        List <String> name1= c.list();
-        StringBuilder strbul=new StringBuilder();
-        for(String str : name1)
-        {
+        List<String> name1 = c.list();
+        StringBuilder strbul = new StringBuilder();
+        for (String str : name1) {
             strbul.append(str);
-            
+
         }
         //just for removing last comma
         //strbul.setLength(strbul.length()-1);
-        String str=strbul.toString();
-        
-        
+        String str = strbul.toString();
+
         userId.setText(HomePage.id);
-        String Subject = (String)subject.getSelectedItem();
+        String Subject = (String) subject.getSelectedItem();
         String Topic = topic.getText();
         String Date;
-         DateModel dm = date.getModel();
-         Date = dm.getDay()+"/"+dm.getMonth()+"/"+dm.getYear();
+        DateModel dm = date.getModel();
+        Date = dm.getDay() + "/" + dm.getMonth() + "/" + dm.getYear();
         String Time = time.getText();
-       
-        
         name.setText(str);
 
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-
-        ScheduleLecture sl = new ScheduleLecture(str,HomePage.id,Subject,Topic,Date,Time);
-        session.save(sl);
-        tx.commit();
-        session.close();
+        ScheduleLecture sl = new ScheduleLecture(str, HomePage.id, Subject, Topic, Date, Time);
+        service.insert(sl);
         JOptionPane.showMessageDialog(this, "Successfully Scheduled");
         topic.setText("");
         time.setText("");
-        
+
 
     }//GEN-LAST:event_jLabel22MouseClicked
 
@@ -972,53 +941,40 @@ public void load(){
 
     private void jLabel24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel24MouseClicked
         int number = Integer.parseInt(jTextField1.getText());
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-        query data = (query)session.get(query.class,number);  
-        session.delete(data);
-        tx.commit();
-        JOptionPane.showMessageDialog(this,"Request Declined");
-        Criteria crit = session.createCriteria(query.class);
-        List <query> data1 = crit.list();
-        
-        
+        AddRequest data = (AddRequest) session.get(AddRequest.class, number);
+        service.delete(data);
+        JOptionPane.showMessageDialog(this, "Request Declined");
+        Criteria crit = session.createCriteria(AddRequest.class);
+        List<AddRequest> data1 = crit.list();
+
         load();
-        
-        
+
     }//GEN-LAST:event_jLabel24MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
-      int number = Integer.parseInt(jTextField1.getText());
-        SessionFactory sf1 = new Configuration().configure().buildSessionFactory();
-        Session session1= sf1.openSession();
-        Transaction tx1 = session1.beginTransaction();
-        query data1 = (query)session.get(query.class,number); 
+        int number = Integer.parseInt(jTextField1.getText());
+      
+        AddRequest data1 = (AddRequest) session.get(AddRequest.class, number);
         String name = data1.getFullName();
         String userId = data1.getUserID();
-        String subject= data1.getSubject();
+        String subject = data1.getSubject();
         String topic = data1.getTopic();
-        String reason= data1.getReason();
+        String reason = data1.getReason();
         String instName = data1.getInstructorName();
-        String fromDate= data1.getFromDate();
+        String fromDate = data1.getFromDate();
         String toDate = data1.getToDate();
-        AcceptedRequests ar = new AcceptedRequests(1,name,userId,subject,topic,reason,instName,fromDate,toDate);
+        AcceptRequest ar = new AcceptRequest(1, name, userId, subject, topic, reason, instName, fromDate, toDate);
+   
+        service.insert(ar);
         
-        session1.save(ar);
-        tx1.commit();
-        JOptionPane.showMessageDialog(this,"Request Accepted!");
+        JOptionPane.showMessageDialog(this, "Request Accepted!");
         jTextField1.setText("");
-        
+
         session.delete(data1);
         tx.commit();
-        Criteria crit = session.createCriteria(query.class);
-        List <query> data2 = crit.list();
-        
-        
+        Criteria crit = session.createCriteria(AddRequest.class);
+        List<AddRequest> data2 = crit.list();
         load();
-    
-        
-
     }//GEN-LAST:event_jLabel25MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -1026,23 +982,20 @@ public void load(){
         String newPass = jTextField3.getText();
         String confirmNewPass = jTextField4.getText();
 
-        if(newPass.equals(confirmNewPass)){
-            SessionFactory sf= new Configuration().configure().buildSessionFactory();
-            Session session = sf.openSession();
-            Transaction tx = session.beginTransaction();
-            teacher st = (teacher)session.get(teacher.class,HomePage.id);
+        if (newPass.equals(confirmNewPass)) {
+            Instructor st = (Instructor) session.get(Instructor.class, HomePage.id);
             st.setPassword(confirmNewPass);
             session.update(st);
             tx.commit();
-            JOptionPane.showMessageDialog(this,"Successfully Changed!");
+            JOptionPane.showMessageDialog(this, "Successfully Changed!");
 
-        }else{
-            JOptionPane.showMessageDialog(this,"Confirm New Password and New Password are not same");
+        } else {
+            JOptionPane.showMessageDialog(this, "Confirm New Password and New Password are not same");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        cl.show(jPanel5,"card4");
+        cl.show(jPanel5, "card4");
         jLabel1.setBackground(new java.awt.Color(119, 124, 168));
         jLabel1.setForeground(Color.white);
         jLabel12.setBackground(Color.white);

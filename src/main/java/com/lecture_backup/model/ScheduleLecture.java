@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package hib.dto;
+package main.java.com.lecture_backup.model;
 
-/**
- *
- * @author HP
- */
 public class ScheduleLecture {
     private int serialNo;
     private String name;
@@ -85,6 +76,4 @@ public class ScheduleLecture {
     public void setSerialNo(int serialNo) {
         this.serialNo = serialNo;
     }
-    
-    
 }

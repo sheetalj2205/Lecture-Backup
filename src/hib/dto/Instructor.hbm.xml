@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -38,23 +39,15 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-
-<!DOCTYPE hibernate-mapping PUBLIC
-  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
 <hibernate-mapping package="hib.dto">
-
-    <class name="teacher" table="teacher_table">
+  <class name="main.java.com.lecture_backup.model.Instructor" table="teacher_table">
     <id name="userId"/>
-        <property name="name" column="Name"/>
-        <property name="Password"/>
-        <property name="gender"/>
-        <property name="contactNo"/>
-        <property name="Address"/>
-        <property name="Department"/>
-        <property name="Subject"/>
-    
-    </class>
-
+    <property column="Name" name="name"/>
+    <property name="Password"/>
+    <property name="gender"/>
+    <property name="contactNo"/>
+    <property name="Address"/>
+    <property name="Department"/>
+    <property name="Subject"/>
+  </class>
 </hibernate-mapping>

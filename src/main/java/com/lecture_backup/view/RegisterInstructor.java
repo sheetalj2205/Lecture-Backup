@@ -1,7 +1,10 @@
+package main.java.com.lecture_backup.view;
 
-import hib.dto.Student;
-import hib.dto.teacher;
+
+import main.java.com.lecture_backup.model.Student;
+import main.java.com.lecture_backup.model.Instructor;
 import javax.swing.JOptionPane;
+import main.java.com.lecture_backup.service.LectureBackupService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,6 +21,11 @@ import org.hibernate.cfg.Configuration;
  * @author HP
  */
 public class RegisterInstructor extends javax.swing.JFrame {
+    SessionFactory sf = new Configuration().configure().buildSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = session.beginTransaction();
+    //object of LectureBackupService class to call all insert, delete, update methods
+    LectureBackupService service = new LectureBackupService();
 
     /**
      * Creates new form RegisterInstructor
@@ -322,14 +330,8 @@ public class RegisterInstructor extends javax.swing.JFrame {
         String Department = (String)branch1.getSelectedItem();
         String Subject = section1.getText();
         
-
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-        teacher t = new teacher(emailid,Name,Password,gender,Contact,Address,Department,Subject);
-        session.save(t);
-        tx.commit();
-        session.close();
+        Instructor t = new Instructor(emailid,Name,Password,gender,Contact,Address,Department,Subject);
+        service.insert(t);
         
         JOptionPane.showMessageDialog(this,"Successfully Registered");
     }//GEN-LAST:event_jLabel37MouseClicked

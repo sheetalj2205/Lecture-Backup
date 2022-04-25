@@ -1,33 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package hib.dto;
+package main.java.com.lecture_backup.model;
 
-/**
- *
- * @author HP
- */
-public class query {
-    private int serialNo;
-    private String fullName;
-    private String userID;
+public class AcceptRequest {
+    private int serailNo;
+    private String name;
+    private String userId;
     private String subject;
     private String topic;
     private String reason;
     private String instructorName;
     private String fromDate;
     private String toDate;
-    
 
-    public query() {
-    }
-
-    public query(int serialNo, String fullName, String userID, String subject, String topic, String reason, String instructorName, String fromDate, String toDate) {
-        this.serialNo = serialNo;
-        this.fullName = fullName;
-        this.userID = userID;
+    public AcceptRequest(int serailNo, String name, String userId, String subject, String topic, String reason, String instructorName, String fromDate, String toDate) {
+        this.serailNo = serailNo;
+        this.name = name;
+        this.userId = userId;
         this.subject = subject;
         this.topic = topic;
         this.reason = reason;
@@ -35,29 +22,31 @@ public class query {
         this.fromDate = fromDate;
         this.toDate = toDate;
     }
-
-    public int getSerialNo() {
-        return serialNo;
+    public AcceptRequest() {
     }
 
-    public void setSerialNo(int serialNo) {
-        this.serialNo = serialNo;
+    public int getSerailNo() {
+        return serailNo;
     }
 
-    public String getFullName() {
-        return fullName;
+    public void setSerailNo(int serailNo) {
+        this.serailNo = serailNo;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getName() {
+        return name;
     }
 
-    public String getUserID() {
-        return userID;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getSubject() {
@@ -107,7 +96,4 @@ public class query {
     public void setToDate(String toDate) {
         this.toDate = toDate;
     }
-    
-    
-    
 }

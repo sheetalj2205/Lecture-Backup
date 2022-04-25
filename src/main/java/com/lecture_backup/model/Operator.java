@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hib.dto;
+package main.java.com.lecture_backup.model;
 
 /**
  *
  * @author HP
  */
-public class operator {
+public class Operator {
     private String operator_Id;
     private String operator_name;
     private String operator_pswrd;
@@ -56,10 +56,10 @@ public class operator {
         this.mail_ID = mail_ID;
     }
 
-    public operator() {
+    public Operator() {
     }
 
-    public operator(String operator_name, String operator_Id, String operator_pswrd, String contact_number, String mail_ID) {
+    public Operator(String operator_name, String operator_Id, String operator_pswrd, String contact_number, String mail_ID) {
         this.operator_name = operator_name;
         this.operator_Id = operator_Id;
         this.operator_pswrd = operator_pswrd;
