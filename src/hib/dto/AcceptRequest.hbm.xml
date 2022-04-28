@@ -44,7 +44,7 @@ Contributor(s):
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="hib.dto">
-    <class name="AcceptedRequests" table="accepted_table">
+    <class name="main.java.com.lecture_backup.model.AcceptRequest" table="accepted_table">
         <id name="serailNo">
             <generator class="native"/>
         </id>
@@ -56,9 +56,5 @@ Contributor(s):
         <property name="instructorName"/>
         <property name="fromDate"/>
         <property name="toDate"/>
-
     </class>
-
-
-
 </hibernate-mapping>

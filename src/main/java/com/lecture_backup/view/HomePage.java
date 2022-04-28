@@ -122,7 +122,7 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(175, 186, 220));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Downloads\\logoclg_1_34.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/logoclg_1_34.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -138,7 +138,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Indore Road,Ujjain - 4501610");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Downloads\\l.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/l.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -313,14 +313,14 @@ public class HomePage extends javax.swing.JFrame {
         jLabel25.setText("Login As");
         jPanel9.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 90, 150, -1));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/button_1.png"))); // NOI18N
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/submit.png"))); // NOI18N
         jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel26MouseClicked(evt);
             }
         });
-        jPanel9.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 210, -1));
+        jPanel9.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 110, -1));
 
         jLabel27.setBackground(new java.awt.Color(255, 255, 255));
         jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -513,7 +513,7 @@ public class HomePage extends javax.swing.JFrame {
                 Id1.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, "Welcome " + id);
-                new SignInAsInstructor().setVisible(true);
+                new main.java.com.lecture_backup.view.SignInAsInstructor().setVisible(true);
                 dispose();
             }
         }

@@ -470,7 +470,7 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/instruct.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/instruct.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1043,7 +1043,6 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/submit.png"))); // NOI18N
         jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel37.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1276,7 +1275,6 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/submit.png"))); // NOI18N
         jLabel51.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1566,7 +1564,7 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/instruct.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/instruct.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -1672,7 +1670,7 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/instruct.png"))); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/instruct.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);

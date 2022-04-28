@@ -1,20 +1,14 @@
 package main.java.com.lecture_backup.view;
 
-import main.java.com.lecture_backup.view.HomePage;
 import main.java.com.lecture_backup.model.AcceptRequest;
 import main.java.com.lecture_backup.model.ScheduleLecture;
 import main.java.com.lecture_backup.model.Student;
 import main.java.com.lecture_backup.model.AddRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import main.java.com.lecture_backup.service.LectureBackupService;
@@ -23,7 +17,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -633,6 +626,12 @@ public class SignInAsStudent extends javax.swing.JFrame {
 
         days1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        days2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                days2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -854,15 +853,14 @@ public class SignInAsStudent extends javax.swing.JFrame {
         String Reason = jTextArea1.getText();
         instructorname = (String) instructorName.getSelectedItem();
         String fromDate;
-
         DateModel dm = days1.getModel();
         fromDate = dm.getDay() + "/" + dm.getMonth() + "/" + dm.getYear();
         String toDate;
         DateModel dm1 = days2.getModel();
-        toDate = dm.getDay() + "/" + dm.getMonth() + "/" + dm.getYear();
+        toDate = dm1.getDay() + "/" + dm1.getMonth() + "/" + dm1.getYear();
         //insert record
-        AddRequest request = new AddRequest(1, fullName, HomePage.id, Subject, Topic, Reason, instructorname, fromDate, toDate);
-        service.insert(request);
+        AddRequest add = new AddRequest(1, fullName, HomePage.id, Subject, Topic, Reason, instructorname, fromDate, toDate);
+        service.insert(add);
         JOptionPane.showMessageDialog(this, "Request Successfully Submitted");
 
         topic.setText("");
@@ -923,6 +921,10 @@ public class SignInAsStudent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Confirm New Password and New Password are not same");
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void days2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_days2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_days2ActionPerformed
 
     /**
      * @param args the command line arguments

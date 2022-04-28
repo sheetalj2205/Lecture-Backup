@@ -1,22 +1,13 @@
 package main.java.com.lecture_backup.view;
 
-import main.java.com.lecture_backup.view.HomePage;
 import main.java.com.lecture_backup.model.AcceptRequest;
 import main.java.com.lecture_backup.model.ScheduleLecture;
-import main.java.com.lecture_backup.model.Student;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 import main.java.com.lecture_backup.model.AddRequest;
 import main.java.com.lecture_backup.model.Instructor;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.net.HttpURLConnection;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -53,34 +44,21 @@ public class SignInAsInstructor extends javax.swing.JFrame {
     
     //object of LectureBackupService class to call all insert, delete, update methods
     LectureBackupService service = new LectureBackupService();
-
+    
     public SignInAsInstructor() {
 
         initComponents();
         userId.setText(HomePage.id);
         jTextField2.setText(HomePage.id);
-
-        Criteria c = session.createCriteria(Instructor.class);
-        c.add(Restrictions.eq("userId", HomePage.id));
-
-        ProjectionList pl = Projections.projectionList();
-        pl.add(Projections.property("name"));
-        c.setProjection(pl);
-        List<String> name1 = c.list();
-        StringBuilder strbul = new StringBuilder();
-        for (String str : name1) {
-            strbul.append(str);
-
-        }
-        //just for removing last comma
-        //strbul.setLength(strbul.length()-1);
-        String str = strbul.toString();
+        
+        String str = getInstructorName();
         name.setText(str);
-
-        cl = (CardLayout) (jPanel5.getLayout());
+        
+        cl=(CardLayout)(jPanel5.getLayout());
+        
         Criteria crit = session.createCriteria(AddRequest.class);
         crit.add(Restrictions.eq("instructorName", str));
-
+        
         List<AddRequest> data = crit.list();
         jTable1.setRowHeight(45);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
@@ -89,16 +67,33 @@ public class SignInAsInstructor extends javax.swing.JFrame {
         tableHeader.setForeground(Color.black);
         Font headerFont = new Font("Verdana", Font.PLAIN, 19);
         tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable1.getModel();
-
+        dtm= (DefaultTableModel)jTable1.getModel();
+         
         dtm.setRowCount(0);
-        for (AddRequest sl : data) {
-            Object obj[] = {sl.getSerialNo(), sl.getFullName(), sl.getUserID(), sl.getSubject(), sl.getTopic(), sl.getReason(), sl.getInstructorName(), sl.getFromDate(), sl.getToDate()};
-            dtm.addRow(obj);
-
+        for (AddRequest sl :data){
+            Object obj[]={sl.getSerialNo(),sl.getFullName(),sl.getUserID(),sl.getSubject(),sl.getTopic(),sl.getReason(),sl.getInstructorName(),sl.getFromDate(),sl.getToDate()};
+            dtm.addRow(obj);           
         }
-
     }
+   
+    public String getInstructorName(){
+        Criteria c = session.createCriteria(Instructor.class);
+        c.add(Restrictions.eq("userId", HomePage.id));
+        ProjectionList pl = Projections.projectionList();
+        pl.add(Projections.property("name"));
+        c.setProjection(pl);
+        List<String> name1 = c.list();
+        StringBuilder strbul = new StringBuilder();
+        name1.forEach((str) -> {
+            strbul.append(str);
+        });
+        //just for removing last comma
+        //strbul.setLength(strbul.length()-1);
+        String str = strbul.toString();
+        return str;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -814,9 +809,11 @@ public class SignInAsInstructor extends javax.swing.JFrame {
         //        dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
     public void load() {
-
+        String str = getInstructorName();
+        name.setText(str);
+        cl = (CardLayout) (jPanel5.getLayout());
         Criteria crit = session.createCriteria(AddRequest.class);
-        crit.add(Restrictions.eq("subject", "maths"));
+        crit.add(Restrictions.eq("instructorName", str));
         List<AddRequest> data = crit.list();
         jTable1.setRowHeight(45);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
@@ -826,7 +823,6 @@ public class SignInAsInstructor extends javax.swing.JFrame {
         Font headerFont = new Font("Verdana", Font.PLAIN, 19);
         tableHeader.setFont(headerFont);
         dtm = (DefaultTableModel) jTable1.getModel();
-
         dtm.setRowCount(0);
         for (AddRequest sl : data) {
             Object obj[] = {sl.getSerialNo(), sl.getFullName(), sl.getUserID(), sl.getSubject(), sl.getTopic(), sl.getReason(), sl.getInstructorName(), sl.getFromDate(), sl.getToDate()};
@@ -897,22 +893,8 @@ public class SignInAsInstructor extends javax.swing.JFrame {
     }//GEN-LAST:event_nameActionPerformed
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
-        Criteria c = session.createCriteria(Instructor.class);
-        c.add(Restrictions.eq("userId", HomePage.id));
-
-        ProjectionList pl = Projections.projectionList();
-        pl.add(Projections.property("name"));
-        c.setProjection(pl);
-        List<String> name1 = c.list();
-        StringBuilder strbul = new StringBuilder();
-        for (String str : name1) {
-            strbul.append(str);
-
-        }
-        //just for removing last comma
-        //strbul.setLength(strbul.length()-1);
-        String str = strbul.toString();
-
+        
+        String str = getInstructorName();
         userId.setText(HomePage.id);
         String Subject = (String) subject.getSelectedItem();
         String Topic = topic.getText();
@@ -946,9 +928,7 @@ public class SignInAsInstructor extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Request Declined");
         Criteria crit = session.createCriteria(AddRequest.class);
         List<AddRequest> data1 = crit.list();
-
         load();
-
     }//GEN-LAST:event_jLabel24MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
