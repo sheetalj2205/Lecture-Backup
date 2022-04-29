@@ -474,7 +474,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        new OperatorWindow().setVisible(true);
+        new main.java.com.lecture_backup.view.OperatorWindow().setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 

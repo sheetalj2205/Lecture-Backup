@@ -1,7 +1,6 @@
 package main.java.com.lecture_backup.view;
 
 import main.java.com.lecture_backup.model.AcceptRequest;
-import main.java.com.lecture_backup.model.ScheduleLecture;
 import main.java.com.lecture_backup.model.Student;
 import main.java.com.lecture_backup.model.AddRequest;
 import java.awt.CardLayout;

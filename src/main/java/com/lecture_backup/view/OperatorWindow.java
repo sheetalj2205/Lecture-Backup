@@ -1,17 +1,14 @@
 package main.java.com.lecture_backup.view;
 
-import main.java.com.lecture_backup.view.HomePage;
-import main.java.com.lecture_backup.model.ScheduleLecture;
 import main.java.com.lecture_backup.model.Student;
 
 import main.java.com.lecture_backup.model.Instructor;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import main.java.com.lecture_backup.service.LectureBackupService;
@@ -82,8 +79,47 @@ public class OperatorWindow extends javax.swing.JFrame {
 
     }
 
-    public void load() {
+    //load instructor table
+    public void loadInstructorTable(JTable jTable, List<Instructor> data) {
+        jTable.setRowHeight(45);
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+        JTableHeader tableHeader = jTable.getTableHeader();
+        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
+        tableHeader.setForeground(Color.black);
+        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
+        tableHeader.setFont(headerFont);
+        dtm = (DefaultTableModel) jTable.getModel();
 
+        dtm.setRowCount(0);
+        for (Instructor sl : data) {
+            Object obj[] = {sl.getUserId(), sl.getPassword(), sl.getName(), sl.getContactNo(), sl.getDepartment(), sl.getSubject()};
+            dtm.addRow(obj);
+
+        }
+    }
+
+    //load student table
+    public void loadStudentTable(JTable jTable, List<Student> data) {
+        jTable.setRowHeight(45);
+        jTable.getColumnModel().getColumn(6).setPreferredWidth(2);
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable.getColumnModel().getColumn(7).setPreferredWidth(1);
+        jTable.getColumnModel().getColumn(10).setPreferredWidth(1);
+        jTable.getColumnModel().getColumn(3).setPreferredWidth(2);
+        jTable.getColumnModel().getColumn(9).setPreferredWidth(1);
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(2);
+        JTableHeader tableHeader = jTable.getTableHeader();
+        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
+        tableHeader.setForeground(Color.black);
+        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
+        tableHeader.setFont(headerFont);
+        dtm = (DefaultTableModel) jTable.getModel();
+
+        for (Student sl : data) {
+            Object obj[] = {sl.getID(), sl.getName(), sl.getPassword(), sl.getGender(), sl.getContactNumber(), sl.getAddress(), sl.getDOB(), sl.getCourse(), sl.getBranch(), sl.getYear(), sl.getSection()};
+            dtm.addRow(obj);
+
+        }
     }
 
     /**
@@ -255,7 +291,7 @@ public class OperatorWindow extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(175, 186, 220));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Downloads\\logoclg_1_34.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/logoclg_1_34.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -511,7 +547,7 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/l5.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/l5.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1043,6 +1079,7 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/submit.png"))); // NOI18N
         jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel37.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1100,8 +1137,8 @@ public class OperatorWindow extends javax.swing.JFrame {
                 .addGap(85, 85, 85))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel37)
-                .addGap(455, 455, 455))
+                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(408, 408, 408))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1139,9 +1176,9 @@ public class OperatorWindow extends javax.swing.JFrame {
                     .addComponent(jLabel35)
                     .addComponent(branch1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(section1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel37)
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -1275,6 +1312,7 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/lecture_backup/images/submit.png"))); // NOI18N
         jLabel51.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1303,10 +1341,6 @@ public class OperatorWindow extends javax.swing.JFrame {
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel51)
-                .addGap(455, 455, 455))
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1335,14 +1369,14 @@ public class OperatorWindow extends javax.swing.JFrame {
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(branch4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(branch2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(100, 100, 100)
+                .addGap(118, 118, 118)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1358,6 +1392,10 @@ public class OperatorWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(branch3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(435, 435, 435))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1405,9 +1443,9 @@ public class OperatorWindow extends javax.swing.JFrame {
                     .addComponent(jLabel49)
                     .addComponent(branch2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(section2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addComponent(jLabel51)
-                .addGap(38, 38, 38))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         jLabel57.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
@@ -1604,8 +1642,6 @@ public class OperatorWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/l5.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
         jPanel27Layout.setHorizontalGroup(
@@ -1709,8 +1745,6 @@ public class OperatorWindow extends javax.swing.JFrame {
                 jLabel26MouseClicked(evt);
             }
         });
-
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/l5.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
         jPanel30.setLayout(jPanel30Layout);
@@ -2184,21 +2218,8 @@ public class OperatorWindow extends javax.swing.JFrame {
         Criteria crit = session.createCriteria(Student.class);
         crit.add(Restrictions.eq("ID", id));
         List<Student> data = crit.list();
+        loadStudentTable(jTable3, data);
 
-        jTable3.setRowHeight(45);
-        jTable3.getColumnModel().getColumn(0).setPreferredWidth(1);
-        JTableHeader tableHeader = jTable3.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable3.getModel();
-
-        for (Student sl : data) {
-            Object obj[] = {sl.getID(), sl.getName(), sl.getPassword(), sl.getGender(), sl.getContactNumber(), sl.getAddress(), sl.getDOB(), sl.getCourse(), sl.getBranch(), sl.getYear(), sl.getSection()};
-            dtm.addRow(obj);
-
-        }
         jLabel39.setBackground(new java.awt.Color(119, 124, 168));
         jLabel39.setForeground(Color.white);
         jLabel2.setBackground(Color.white);
@@ -2256,15 +2277,12 @@ public class OperatorWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-
         String value = (String) jComboBox2.getSelectedItem();
 
         if (value.equalsIgnoreCase("Students")) {
             cl.show(jPanel5, "card6");
-
             Criteria crit = session.createCriteria(Student.class);
             List<Student> data = crit.list();
-
             jTable1.setRowHeight(70);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(25);
             jTable1.getColumnModel().getColumn(7).setPreferredWidth(1);
@@ -2285,28 +2303,11 @@ public class OperatorWindow extends javax.swing.JFrame {
 
             }
         } else if (value.equalsIgnoreCase("Instructors")) {
-
             cl.show(jPanel5, "card7");
-
             Criteria crit = session.createCriteria(Instructor.class);
             List<Instructor> data = crit.list();
-
-            jTable2.setRowHeight(45);
-            jTable2.getColumnModel().getColumn(0).setPreferredWidth(20);
-            JTableHeader tableHeader = jTable2.getTableHeader();
-            tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-            tableHeader.setForeground(Color.black);
-            Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-            tableHeader.setFont(headerFont);
-            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
-            dtm.setRowCount(0);
-            for (Instructor sl : data) {
-                Object obj[] = {sl.getUserId(), sl.getName(), sl.getContactNo(), sl.getDepartment(), sl.getSubject()};
-                dtm.addRow(obj);
-
-            }
+            loadInstructorTable(jTable2, data);
         }
-
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
@@ -2402,7 +2403,6 @@ public class OperatorWindow extends javax.swing.JFrame {
         emailId2.setText("");
         password2.setText("");
         contact2.setText("");
-
         section2.setText("");
         jTextArea3.setText("");
 
@@ -2432,29 +2432,7 @@ public class OperatorWindow extends javax.swing.JFrame {
         Criteria crit = session.createCriteria(Student.class);
         crit.add(Restrictions.eq("ID", id));
         List<Student> data = crit.list();
-
-        jTable3.setRowHeight(45);
-        jTable3.getColumnModel().getColumn(6).setPreferredWidth(2);
-        jTable3.getColumnModel().getColumn(0).setPreferredWidth(10);
-        jTable3.getColumnModel().getColumn(7).setPreferredWidth(1);
-        jTable3.getColumnModel().getColumn(10).setPreferredWidth(1);
-        jTable3.getColumnModel().getColumn(3).setPreferredWidth(2);
-        jTable3.getColumnModel().getColumn(9).setPreferredWidth(1);
-        jTable3.getColumnModel().getColumn(1).setPreferredWidth(2);
-        JTableHeader tableHeader = jTable3.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable3.getModel();
-
-        dtm.setRowCount(0);
-        for (Student sl : data) {
-            Object obj[] = {sl.getID(), sl.getName(), sl.getPassword(), sl.getGender(), sl.getContactNumber(), sl.getAddress(), sl.getDOB(), sl.getCourse(), sl.getBranch(), sl.getYear(), sl.getSection()};
-            dtm.addRow(obj);
-
-        }
-
+        loadStudentTable(jTable3, data);
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -2467,23 +2445,7 @@ public class OperatorWindow extends javax.swing.JFrame {
         Criteria crit = session.createCriteria(Instructor.class);
         crit.add(Restrictions.eq("userId", id));
         List<Instructor> data = crit.list();
-
-        jTable5.setRowHeight(45);
-        jTable5.getColumnModel().getColumn(0).setPreferredWidth(2);
-        JTableHeader tableHeader = jTable5.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable5.getModel();
-
-        dtm.setRowCount(0);
-        for (Instructor sl : data) {
-            Object obj[] = {sl.getUserId(), sl.getPassword(), sl.getName(), sl.getContactNo(), sl.getDepartment(), sl.getSubject()};
-            dtm.addRow(obj);
-
-        }
-
+        loadInstructorTable(jTable5, data);
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -2544,32 +2506,10 @@ public class OperatorWindow extends javax.swing.JFrame {
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         String id = jTextField4.getText();
-
         Criteria crit = session.createCriteria(Student.class);
         crit.add(Restrictions.eq("ID", id));
         List<Student> data = crit.list();
-
-        jTable4.setRowHeight(45);
-        jTable4.getColumnModel().getColumn(6).setPreferredWidth(2);
-        jTable4.getColumnModel().getColumn(0).setPreferredWidth(10);
-        jTable4.getColumnModel().getColumn(7).setPreferredWidth(1);
-        jTable4.getColumnModel().getColumn(10).setPreferredWidth(1);
-        jTable4.getColumnModel().getColumn(3).setPreferredWidth(2);
-        jTable4.getColumnModel().getColumn(9).setPreferredWidth(1);
-        jTable4.getColumnModel().getColumn(1).setPreferredWidth(2);
-        JTableHeader tableHeader = jTable4.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable4.getModel();
-
-        dtm.setRowCount(0);
-        for (Student sl : data) {
-            Object obj[] = {sl.getID(), sl.getName(), sl.getPassword(), sl.getGender(), sl.getContactNumber(), sl.getAddress(), sl.getDOB(), sl.getCourse(), sl.getBranch(), sl.getYear(), sl.getSection()};
-            dtm.addRow(obj);
-
-        }
+        loadStudentTable(jTable4, data);
     }//GEN-LAST:event_jButton10MouseClicked
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -2620,28 +2560,7 @@ public class OperatorWindow extends javax.swing.JFrame {
         Criteria crit = session.createCriteria(Student.class);
         crit.add(Restrictions.eq("ID", id));
         List<Student> data = crit.list();
-
-        jTable4.setRowHeight(45);
-        jTable4.getColumnModel().getColumn(6).setPreferredWidth(2);
-        jTable4.getColumnModel().getColumn(0).setPreferredWidth(10);
-        jTable4.getColumnModel().getColumn(7).setPreferredWidth(1);
-        jTable4.getColumnModel().getColumn(10).setPreferredWidth(1);
-        jTable4.getColumnModel().getColumn(3).setPreferredWidth(2);
-        jTable4.getColumnModel().getColumn(9).setPreferredWidth(1);
-        jTable4.getColumnModel().getColumn(1).setPreferredWidth(2);
-        JTableHeader tableHeader = jTable4.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable4.getModel();
-
-        dtm.setRowCount(0);
-        for (Student sl : data) {
-            Object obj[] = {sl.getID(), sl.getName(), sl.getPassword(), sl.getGender(), sl.getContactNumber(), sl.getAddress(), sl.getDOB(), sl.getCourse(), sl.getBranch(), sl.getYear(), sl.getSection()};
-            dtm.addRow(obj);
-
-        }
+        loadStudentTable(jTable4, data);
     }//GEN-LAST:event_jButton11MouseClicked
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -2653,22 +2572,7 @@ public class OperatorWindow extends javax.swing.JFrame {
         Criteria crit = session.createCriteria(Instructor.class);
         crit.add(Restrictions.eq("userId", id));
         List<Instructor> data = crit.list();
-
-        jTable6.setRowHeight(45);
-        jTable6.getColumnModel().getColumn(0).setPreferredWidth(2);
-        JTableHeader tableHeader = jTable6.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable6.getModel();
-
-        dtm.setRowCount(0);
-        for (Instructor sl : data) {
-            Object obj[] = {sl.getUserId(), sl.getPassword(), sl.getName(), sl.getContactNo(), sl.getDepartment(), sl.getSubject()};
-            dtm.addRow(obj);
-
-        }
+        loadInstructorTable(jTable6, data);
     }//GEN-LAST:event_jButton12MouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -2702,22 +2606,7 @@ public class OperatorWindow extends javax.swing.JFrame {
         Criteria crit = session.createCriteria(Instructor.class);
         crit.add(Restrictions.eq("userId", id));
         List<Instructor> data = crit.list();
-
-        jTable6.setRowHeight(45);
-        jTable6.getColumnModel().getColumn(0).setPreferredWidth(2);
-        JTableHeader tableHeader = jTable6.getTableHeader();
-        tableHeader.setBackground(new java.awt.Color(119, 124, 168));
-        tableHeader.setForeground(Color.black);
-        Font headerFont = new Font("Verdana", Font.PLAIN, 19);
-        tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable6.getModel();
-
-        dtm.setRowCount(0);
-        for (Instructor sl : data) {
-            Object obj[] = {sl.getUserId(), sl.getPassword(), sl.getName(), sl.getContactNo(), sl.getDepartment(), sl.getSubject()};
-            dtm.addRow(obj);
-
-        }
+        loadInstructorTable(jTable6, data);
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed

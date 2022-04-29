@@ -129,7 +129,7 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\HP\Downloads\logoclg_1_34.png"/>
+                  <Image iconType="3" name="/main/java/com/lecture_backup/images/logoclg_1_34.png"/>
                 </Property>
               </Properties>
               <Events>
@@ -601,7 +601,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/l5.png"/>
+                          <Image iconType="3" name="/main/java/com/lecture_backup/images/l5.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1429,8 +1429,8 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="455" max="-2" attributes="0"/>
+                                  <Component id="jLabel37" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="408" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1479,9 +1479,9 @@
                                       <Component id="branch1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="section1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1654,6 +1654,9 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel37">
                           <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/main/java/com/lecture_backup/images/submit.png"/>
+                            </Property>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>
@@ -1759,11 +1762,6 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel51" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="455" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1802,14 +1800,14 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel49" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                                           <Component id="jLabel46" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                                           <Component id="jLabel48" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                           <Component id="jLabel40" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                          <Component id="jLabel49" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1831,6 +1829,11 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel51" min="-2" pref="122" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="435" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1891,9 +1894,9 @@
                                   <Component id="branch2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="section2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="jLabel51" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel51" min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2075,6 +2078,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel51">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/main/java/com/lecture_backup/images/submit.png"/>
+                        </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                           <Color id="Hand Cursor"/>
                         </Property>
@@ -2506,11 +2512,6 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel21">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/l5.png"/>
-                        </Property>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2685,11 +2686,6 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel27">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/l5.png"/>
-                        </Property>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
