@@ -2,24 +2,23 @@ package main.java.com.lecture_backup.view;
 
 import main.java.com.lecture_backup.model.AcceptRequest;
 import main.java.com.lecture_backup.model.Student;
-import main.java.com.lecture_backup.model.AddRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import main.java.com.lecture_backup.service.LectureBackupService;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.jdatepicker.DateModel;
+import main.java.com.lecture_backup.controller.AddRequestController;
+import main.java.com.lecture_backup.service.StudentService;
+import org.jdatepicker.JDatePicker;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,45 +32,27 @@ import org.jdatepicker.DateModel;
 public class SignInAsStudent extends javax.swing.JFrame {
 
     CardLayout cl;
-    static String instructorname;
     DefaultTableModel dtm;
 
+    //create object of LectureBackupService class to call all insert method to add request
+    AddRequestController controller = new AddRequestController();
+
     //create object of LectureBackupService class to call all insert, delete, update methods
-    LectureBackupService service = new LectureBackupService();
+   StudentService service = new StudentService();
 
     public SignInAsStudent() {
         initComponents();
         userId.setText(HomePage.id);
         jTextField2.setText(HomePage.id);
 
+        //get name of student
         cl = (CardLayout) (jPanel5.getLayout());
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session session = sf.openSession();
-        Transaction tx = session.beginTransaction();
-        Criteria crit = session.createCriteria(Student.class);
-        crit.add(Restrictions.eq("ID", HomePage.id));
-
-        ProjectionList pl = Projections.projectionList();
-        pl.add(Projections.property("Name"));
-        crit.setProjection(pl);
-        List<String> data = crit.list();
-        StringBuilder strbul = new StringBuilder();
-
-        for (String str : data) {
-            strbul.append(str);
-        }
-        String str = strbul.toString();
-
+        String str = service.getStudentName(HomePage.id, Student.class);
         jLabel25.setText("Welcome " + str);
         name.setText(str);
 
-        SessionFactory sf1 = new Configuration().configure().buildSessionFactory();
-        Session session1 = sf1.openSession();
-        Transaction tx1 = session1.beginTransaction();
-
-        Criteria crit1 = session.createCriteria(AcceptRequest.class);
-        crit1.add(Restrictions.eq("userId", HomePage.id));
-        List<AcceptRequest> data1 = crit1.list();
+        //view accepted requests of corresponding student
+        service.getAcceptRequestTable(HomePage.id, jTable1, AcceptRequest.class);
         jTable1.setRowHeight(45);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         JTableHeader tableHeader = jTable1.getTableHeader();
@@ -79,15 +60,6 @@ public class SignInAsStudent extends javax.swing.JFrame {
         tableHeader.setForeground(Color.black);
         Font headerFont = new Font("Verdana", Font.PLAIN, 19);
         tableHeader.setFont(headerFont);
-        dtm = (DefaultTableModel) jTable1.getModel();
-
-        dtm.setRowCount(0);
-        for (AcceptRequest sl : data1) {
-            Object obj[] = {sl.getSerailNo(), sl.getName(), sl.getUserId(), sl.getSubject(), sl.getTopic(), sl.getReason(), sl.getInstructorName(), sl.getFromDate(), sl.getToDate()};
-
-            dtm.addRow(obj);
-
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -845,27 +817,11 @@ public class SignInAsStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
-        String fullName = name.getText();
-        userId.setText(HomePage.id);
-        String Subject = (String) subject.getSelectedItem();
-        String Topic = topic.getText();
-        String Reason = jTextArea1.getText();
-        instructorname = (String) instructorName.getSelectedItem();
-        String fromDate;
-        DateModel dm = days1.getModel();
-        fromDate = dm.getDay() + "/" + dm.getMonth() + "/" + dm.getYear();
-        String toDate;
-        DateModel dm1 = days2.getModel();
-        toDate = dm1.getDay() + "/" + dm1.getMonth() + "/" + dm1.getYear();
-        //insert record
-        AddRequest add = new AddRequest(1, fullName, HomePage.id, Subject, Topic, Reason, instructorname, fromDate, toDate);
-        service.insert(add);
+        controller.insert(this, HomePage.id);
         JOptionPane.showMessageDialog(this, "Request Successfully Submitted");
 
-        topic.setText("");
-        jTextArea1.setText("");
-
-
+        getTopic().setText("");
+        getjTextArea1().setText("");
     }//GEN-LAST:event_jLabel22MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -905,20 +861,14 @@ public class SignInAsStudent extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String newPass = jTextField3.getText();
         String confirmNewPass = jTextField4.getText();
-
-        if (newPass.equals(confirmNewPass)) {
-            SessionFactory sf = new Configuration().configure().buildSessionFactory();
-            Session session = sf.openSession();
-            Transaction tx = session.beginTransaction();
-            Student st = (Student) session.get(Student.class, HomePage.id);
-            st.setPassword(confirmNewPass);
-            session.update(st);
-            tx.commit();
-            JOptionPane.showMessageDialog(this, "Successfully Changed!");
-
+        Boolean result = service.updateStudentPass(newPass, confirmNewPass, Student.class, HomePage.id);
+        if (result == true) {
+            JOptionPane.showMessageDialog(this, "Password Successfully Changed");
         } else {
-            JOptionPane.showMessageDialog(this, "Confirm New Password and New Password are not same");
+            JOptionPane.showMessageDialog(this, "Passwords doesn't match");
         }
+        jTextField3.setText("");
+        jTextField4.setText("");
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void days2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_days2ActionPerformed
@@ -1020,4 +970,245 @@ public class SignInAsStudent extends javax.swing.JFrame {
     private javax.swing.JTextField topic;
     private javax.swing.JTextField userId;
     // End of variables declaration//GEN-END:variables
+
+    //Getter
+    public CardLayout getCl() {
+        return cl;
+    }
+
+    public DefaultTableModel getDtm() {
+        return dtm;
+    }
+
+    public JDatePicker getDays1() {
+        return days1;
+    }
+
+    public JDatePicker getDays2() {
+        return days2;
+    }
+
+    public JComboBox<String> getInstructorName() {
+        return instructorName;
+    }
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    public JLabel getjLabel12() {
+        return jLabel12;
+    }
+
+    public JLabel getjLabel13() {
+        return jLabel13;
+    }
+
+    public JLabel getjLabel14() {
+        return jLabel14;
+    }
+
+    public JLabel getjLabel15() {
+        return jLabel15;
+    }
+
+    public JLabel getjLabel16() {
+        return jLabel16;
+    }
+
+    public JLabel getjLabel17() {
+        return jLabel17;
+    }
+
+    public JLabel getjLabel18() {
+        return jLabel18;
+    }
+
+    public JLabel getjLabel19() {
+        return jLabel19;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public JLabel getjLabel20() {
+        return jLabel20;
+    }
+
+    public JLabel getjLabel21() {
+        return jLabel21;
+    }
+
+    public JLabel getjLabel22() {
+        return jLabel22;
+    }
+
+    public JLabel getjLabel23() {
+        return jLabel23;
+    }
+
+    public JLabel getjLabel24() {
+        return jLabel24;
+    }
+
+    public JLabel getjLabel25() {
+        return jLabel25;
+    }
+
+    public JLabel getjLabel26() {
+        return jLabel26;
+    }
+
+    public JLabel getjLabel27() {
+        return jLabel27;
+    }
+
+    public JLabel getjLabel28() {
+        return jLabel28;
+    }
+
+    public JLabel getjLabel29() {
+        return jLabel29;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public JLabel getjLabel30() {
+        return jLabel30;
+    }
+
+    public JLabel getjLabel31() {
+        return jLabel31;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JPanel getjPanel10() {
+        return jPanel10;
+    }
+
+    public JPanel getjPanel11() {
+        return jPanel11;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public JPanel getjPanel4() {
+        return jPanel4;
+    }
+
+    public JPanel getjPanel5() {
+        return jPanel5;
+    }
+
+    public JPanel getjPanel6() {
+        return jPanel6;
+    }
+
+    public JPanel getjPanel7() {
+        return jPanel7;
+    }
+
+    public JPanel getjPanel8() {
+        return jPanel8;
+    }
+
+    public JPanel getjPanel9() {
+        return jPanel9;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public JTextArea getjTextArea1() {
+        return jTextArea1;
+    }
+
+    public JTextField getjTextField2() {
+        return jTextField2;
+    }
+
+    public JTextField getjTextField3() {
+        return jTextField3;
+    }
+
+    public JTextField getjTextField4() {
+        return jTextField4;
+    }
+
+    public JTextField getNameField() {
+        return name;
+    }
+
+    public JLabel getRequest() {
+        return request;
+    }
+
+    public JComboBox<String> getSubject() {
+        return subject;
+    }
+
+    public JTextField getTopic() {
+        return topic;
+    }
+
+    public JTextField getUserId() {
+        return userId;
+    }
 }

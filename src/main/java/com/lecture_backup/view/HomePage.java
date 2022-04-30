@@ -16,6 +16,7 @@ import java.util.List;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import org.hibernate.Criteria;
@@ -593,4 +594,8 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPasswordField password1;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getId1() {
+        return Id1;
+    }
 }

@@ -10,7 +10,6 @@ import main.java.com.lecture_backup.model.AddRequest;
 import main.java.com.lecture_backup.model.Instructor;
 import main.java.com.lecture_backup.model.ScheduleLecture;
 import main.java.com.lecture_backup.model.Student;
-import main.java.com.lecture_backup.view.HomePage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
